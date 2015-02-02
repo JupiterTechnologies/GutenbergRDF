@@ -136,7 +136,7 @@ public class Rdf {
     List<Subject> subjectsArray = new ArrayList<Subject>();
 
     for (Node node : nodes) {
-      subjectsArray.add(new Subject(getNode("rdf:Description", node.getChildNodes())));
+      subjectsArray.add(new Subject(node));
     }
 
     return subjectsArray;

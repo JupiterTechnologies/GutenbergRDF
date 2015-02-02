@@ -10,16 +10,21 @@ public class Subject {
   }
 
   public String heading() {
-    return Rdf.getNodeValue("rdf:value", subjectNode.getChildNodes());
+    return Rdf.getNodeValue("rdf:value", descriptionNode().getChildNodes());
   }
 
   public String type() {
     String[] resources = uri().split("/");
-    return resources[resources.length - 1].toLowerCase();
+    return resources[resources.length - 1].toUpperCase();
   }
 
   public String uri() {
-    Node node = Rdf.getNode("dcam:memberOf", subjectNode.getChildNodes());
+    Node node = Rdf.getNode("dcam:memberOf", descriptionNode().getChildNodes());
     return Rdf.getNodeAttr("rdf:resource", node);
   }
+
+  private final Node descriptionNode() {
+    return Rdf.getNode("rdf:Description", subjectNode.getChildNodes());
+  }
+
 }
