@@ -2,6 +2,7 @@ package org.gutenberg.rdf;
 
 import org.junit.*;
 import static org.junit.Assert.*;
+import static org.hamcrest.CoreMatchers.*;
 
 import org.w3c.dom.*;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -34,21 +35,21 @@ public class SubjectTest {
   public void subjectHeadingIsReturnedAsString() {
     String heading = new Subject(subjectNode).heading();
 
-    assertEquals(heading, "Fiction");
+    assertThat(heading, equalTo("Fiction"));
   }
 
   @Test
   public void subjectTypeIsReturnedAsString() {
     String type = new Subject(subjectNode).type();
 
-    assertEquals(type, "LCSH");
+    assertThat(type, equalTo("LCSH"));
   }
 
   @Test
   public void subjectUriIsReturnedAsString() {
     String uri = new Subject(subjectNode).uri();
 
-    assertEquals(uri, "http://purl.org/dc/terms/LCSH");
+    assertThat(uri, equalTo("http://purl.org/dc/terms/LCSH"));
   }
 
 }
