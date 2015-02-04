@@ -124,8 +124,7 @@ public class Rdf {
     List<Book> formatsArray = new ArrayList<Book>();
 
     for (Node node : nodes) {
-      Node formatNode = getNode("pgterms:file", node.getChildNodes());
-      formatsArray.add(new Book(formatNode));
+      formatsArray.add(new Book(node));
     }
 
     return formatsArray;

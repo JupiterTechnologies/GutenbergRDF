@@ -14,22 +14,22 @@ public class Book {
   }
 
   public String url() {
-    return Rdf.getNodeAttr("rdf:about", mediaNode);
+    return Rdf.getNodeAttr("rdf:about", fileNode());
   }
 
   public Date modifiedDate() {
     java.util.Calendar date = javax.xml.bind.DatatypeConverter.parseDateTime(
-        Rdf.getNodeValue("dcterms:modified", mediaNode.getChildNodes())
+        Rdf.getNodeValue("dcterms:modified", fileNode().getChildNodes())
     );
     return date.getTime();
   }
 
   public int fileSize() {
-    return Integer.parseInt(Rdf.getNodeValue("dcterms:extent", mediaNode.getChildNodes()));
+    return Integer.parseInt(Rdf.getNodeValue("dcterms:extent", fileNode().getChildNodes()));
   }
 
   public List<String> dataTypes() {
-    List<Node> nodes = Rdf.getAllNodes("dcterms:format", mediaNode.getChildNodes());
+    List<Node> nodes = Rdf.getAllNodes("dcterms:format", fileNode().getChildNodes());
     List<String> entries = new ArrayList<String>();
 
     for (Node node : nodes) {
@@ -40,4 +40,9 @@ public class Book {
     }
     return entries;
   }
+
+  private final Node fileNode() {
+    return Rdf.getNode("pgterms:file", mediaNode.getChildNodes());
+  }
+
 }
