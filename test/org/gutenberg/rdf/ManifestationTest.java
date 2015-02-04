@@ -5,13 +5,13 @@ import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
 import org.w3c.dom.*;
 
-public class BookTest {
-  private Node bookNode;
+public class ManifestationTest {
+  private Node formatNode;
 
   @Before
-  public void generateBookNode() {
+  public void generateFormatNode() {
     try {
-      bookNode = javax.xml.parsers.DocumentBuilderFactory
+      formatNode = javax.xml.parsers.DocumentBuilderFactory
           .newInstance()
           .newDocumentBuilder()
           .parse(new java.io.ByteArrayInputStream((
@@ -36,15 +36,15 @@ public class BookTest {
   }
 
   @Test
-  public void bookUrlIsReturnedAsString() {
-    String url = new Book(bookNode).url();
+  public void urlIsReturnedAsString() {
+    String url = new Manifestation(formatNode).url();
 
     assertThat(url, equalTo("http://www.gutenberg.org/files/12345/12345.txt"));
   }
 
   @Test
-  public void extractsBookModifiedDate() {
-    java.util.Date date = new Book(bookNode).modifiedDate();
+  public void extractsModifiedDate() {
+    java.util.Date date = new Manifestation(formatNode).modifiedDate();
 
     java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd");
 
@@ -52,23 +52,23 @@ public class BookTest {
   }
 
   @Test
-  public void extractsFileSizeAsInteger() {
-    int fileSize = new Book(bookNode).fileSize();
+  public void fileSizeReturnedAsInteger() {
+    int fileSize = new Manifestation(formatNode).fileSize();
 
     assertThat(fileSize, is(281779));
   }
 
   @Test
-  public void expectsCorrectNumberOfDataTypes() {
-    java.util.List types = new Book(bookNode).dataTypes();
+  public void hasCorrectNumberOfDataTypes() {
+    java.util.List types = new Manifestation(formatNode).dataTypes();
 
     assertThat(types.size(), is(1));
   }
   @Test
-  public void expectsDataTypeWithCorrectValue() {
-    Book book = new Book(bookNode);
+  public void hasDataTypeWithCorrectValue() {
+    Manifestation manifestation = new Manifestation(formatNode);
 
-    String firstType = book.dataTypes().get(0).toString();
+    String firstType = manifestation.dataTypes().get(0).toString();
 
     assertThat(firstType, equalTo("text/plain; charset=us-ascii"));
   }

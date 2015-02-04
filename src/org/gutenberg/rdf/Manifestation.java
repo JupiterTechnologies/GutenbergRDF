@@ -6,11 +6,11 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class Book {
-  private final Node mediaNode;
+public class Manifestation {
+  private final Node formatNode;
 
-  public Book(Node node) {
-    mediaNode = node;
+  public Manifestation(Node node) {
+    formatNode = node;
   }
 
   public String url() {
@@ -42,7 +42,7 @@ public class Book {
   }
 
   private final Node fileNode() {
-    return Rdf.getNode("pgterms:file", mediaNode.getChildNodes());
+    return Rdf.getNode("pgterms:file", formatNode.getChildNodes());
   }
 
 }

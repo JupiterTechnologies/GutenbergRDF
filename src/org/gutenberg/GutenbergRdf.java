@@ -1,7 +1,7 @@
 package org.gutenberg;
 
 import org.gutenberg.rdf.Agent;
-import org.gutenberg.rdf.Book;
+import org.gutenberg.rdf.Manifestation;
 import org.gutenberg.rdf.Rdf;
 import org.gutenberg.rdf.Subject;
 
@@ -54,11 +54,11 @@ class GutenbergRdf {
   void outputFormats() {
     System.out.println("eBook Formats:");
     for (int i = 0; i < rdf.ebookFormats().size(); i++) {
-      Book book = rdf.ebookFormats().get(i);
-      System.out.println("         URL: " + book.url());
-      System.out.println("    Released: " + book.modifiedDate());
-      System.out.println("    Filesize: " + book.fileSize());
-      System.out.println("  Data Types: " + book.dataTypes());
+      Manifestation manifestation = rdf.ebookFormats().get(i);
+      System.out.println("         URL: " + manifestation.url());
+      System.out.println("    Released: " + manifestation.modifiedDate());
+      System.out.println("    Filesize: " + manifestation.fileSize());
+      System.out.println("  Data Types: " + manifestation.dataTypes());
       System.out.println("\r");
     }
   }

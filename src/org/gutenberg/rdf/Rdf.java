@@ -119,12 +119,12 @@ public class Rdf {
     return Integer.parseInt(node);
   }
 
-  public List<Book> ebookFormats() {
+  public List<Manifestation> ebookFormats() {
     List<Node> nodes = getAllNodes("dcterms:hasFormat", ebookNode().getChildNodes());
-    List<Book> formatsArray = new ArrayList<Book>();
+    List<Manifestation> formatsArray = new ArrayList<Manifestation>();
 
     for (Node node : nodes) {
-      formatsArray.add(new Book(node));
+      formatsArray.add(new Manifestation(node));
     }
 
     return formatsArray;
